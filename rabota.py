@@ -1,29 +1,49 @@
 import math
 
-x = float((input('Введите x: ')))
-
 def abirvalg(x):
+    try:
 
-    a = math.sin(x)
+        a = math.sin(x)
 
-    b = x - 2*math.cos(x)
+        if x == 0: 
+            raise ZeroDivisionError(f'Тут есть деление на, 0 что неверно!')
+        
+        if x == (math.pi / 2):
+            raise ValueError(f'Тангенса пи/2 не существует')
 
-    d = 2*math.tan(x) - 1
+        b = x - 2*math.cos(x)
 
-    c = math.sqrt(d/x)
+        if b == 0:
+            raise ZeroDivisionError(f'Тут первый знаменатель равен 0, что неверно!')
 
-    alala = a/b + c
 
-    print(alala)
+        d = 2*math.tan(x) - 1
 
-b = abirvalg(x)
+        c = d/x
 
+        if c < 0 :
+            raise ValueError(f'Значение под корнем меньше 0')
+
+        e = math.sqrt(c)
+
+        resh = a/b + e
+
+        print(f'Все хорошо, ваш результат {resh}')
+
+    except ZeroDivisionError as e:
+        print(f'Возникла ошибка {e}')
+
+    except ValueError as e:
+        print(f'Возникла ошибка {e}')
 
 try:
+    a = input("Введите x: ")
+    x = float(a)
+
     abirvalg(x)
 
-    if x == 0:
-        raise ZeroDivisionError
+except ValueError:
+    print("Введите корректное значение(число)")
 
-except ZeroDivisionError:
-    print("Грустно")
+
+
