@@ -4,7 +4,6 @@ from rabota import abirvalg
 
 @pytest.fixture
 def variki():
-    # Ключ — текстовое описание, значение — кортеж (число x, какую фразу мы ждем в принте)
     return {
         "Без перехвата": (67, "Все хорошо"),
         "Перехват на 0": (0, "Тут есть деление на, 0 что неверно!"),
@@ -23,7 +22,7 @@ def test_abirvalg(variki, capsys):
         #capsys.readouterr() перехватывает все что вывелось
         viv = capsys.readouterr()
         
-        #Проверка, viv.out - текст который выда принт
+        #Проверка, viv.out - текст который выдало принт
         assert text in viv.out, f'Возника ошибка, для группы {fir} программа сделала ошибку'
 
 if __name__ == '__main__':
