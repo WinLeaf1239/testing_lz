@@ -33,7 +33,9 @@ def abirvalg(z):
 
                 return "Все хорошо"
 
-if __name__ == "__main__":
+def main():
     z = input('Введите число: ')
     b = abirvalg(z)
     print(b)
+if __name__ == "__main__":
+    main()
