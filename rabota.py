@@ -1,44 +1,39 @@
 import math
 
-def abirvalg(x):
+def abirvalg(z):
+
     try:
-        x = float(x)
+        x = float(z)
     except ValueError:
-        print("Вы ввели не число")
+        return "Вы ввели не число"
+    
+    else:
+        try:
+            (2*math.tan(x) - 1) /x
+        except ZeroDivisionError:
+            return "Тут есть деление на, 0 что неверно!"
+        else:
+            try:
+                math.sqrt((2*math.tan(x) - 1)/x)
+            except ValueError:
+                return "Значение под корнем меньше 0"
+            else:
 
-        a = math.sin(x)
+                a = math.sin(x)
 
-        if x == 0: 
-            raise ZeroDivisionError(f'Тут есть деление на, 0 что неверно!')
-        
-        if x == (math.pi / 2):
-            raise ValueError(f'Тангенса пи/2 не существует')
+                b = x - 2*math.cos(x)
 
-        b = x - 2*math.cos(x)
+                d = 2*math.tan(x) - 1
 
-        if b == 0:
-            raise ZeroDivisionError(f'Тут первый знаменатель равен 0, что неверно!')
+                c = d/x
 
+                e = math.sqrt(c)
 
-        d = 2*math.tan(x) - 1
+                a/b + e
 
-        c = d/x
+                return "Все хорошо"
 
-        if c < 0 :
-            raise ValueError(f'Значение под корнем меньше 0')
-
-        e = math.sqrt(c)
-
-        resh = a/b + e
-
-        print(f'Все хорошо, ваш результат {resh}')
-
-    except ZeroDivisionError as e:
-        print(f'Возникла ошибка {e}')
-
-    except ValueError as e:
-        print(f'Возникла ошибка {e}')
-
-
-
-
+if __name__ == "__main__":
+    z = input('Введите число: ')
+    b = abirvalg(z)
+    print(b)
