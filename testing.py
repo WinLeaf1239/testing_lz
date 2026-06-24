@@ -1,29 +1,13 @@
 import pytest
+from rabota import abirvalg
 import math
-from rabota import abirvalg 
 
-@pytest.fixture
-def variki():
-    return {
-        "Без перехвата": (67, "Все хорошо"),
-        "Перехват на 0": (0, "Тут есть деление на, 0 что неверно!"),
-        "Перехват на отриц знач под корнем": (52, "Значение под корнем меньше 0")
-    }
+@pytest.mark.parametrize("vvod, vivod", [
+    (" ", "Вы ввели не число"),
+    (0, "Тут есть деление на, 0 что неверно!"),
+    ((math.pi)/2, "Тангенса пи/2 не существует"),
+    (52, "Значение под корнем меньше 0"),
+])
 
-
-#capsys перехватывает вывод в терминале
-def test_abirvalg(variki, capsys):
-    for fir, znach in variki.items():
-        
-        x, text = znach
-        
-        abirvalg(x)
-        
-        #capsys.readouterr() перехватывает все что вывелось
-        viv = capsys.readouterr()
-        
-        #Проверка, viv.out - текст который выдало принт
-        assert text in viv.out, f'Возника ошибка, для группы {fir} программа сделала ошибку'
-
-if __name__ == '__main__':
-    pytest.main([__file__, "-v"])
+def abirvalg(vvod, vivod):
+    assert abirvalg(vvod) == vivod, f"Ошибка вывода на значении {vvod}"

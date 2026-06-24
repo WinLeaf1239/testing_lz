@@ -2,6 +2,9 @@ import math
 
 def abirvalg(x):
     try:
+        x = float(x)
+    except ValueError:
+        print("Вы ввели не число")
 
         a = math.sin(x)
 
@@ -35,15 +38,6 @@ def abirvalg(x):
 
     except ValueError as e:
         print(f'Возникла ошибка {e}')
-
-try:
-    a = input("Введите x: ")
-    x = float(a)
-
-    abirvalg(x)
-
-except ValueError:
-    print("Введите корректное значение(число)")
 
 
 
